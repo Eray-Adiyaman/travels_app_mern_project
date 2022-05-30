@@ -3,11 +3,6 @@ import { createTheme } from "@mui/system"
 const theme = createTheme();
 
 const styles ={
-    root: {
-        '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-        },
-      },
       paper: {
         padding: theme.spacing(2),
       },
@@ -15,6 +10,9 @@ const styles ={
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
+      },
+      input:{
+        margin: "10px"
       },
       fileInput: {
         width: '97%',
