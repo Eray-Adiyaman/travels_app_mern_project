@@ -4,7 +4,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import moment from "moment";
 import styles from "./styles.js"
-export default function Post({ post }) {
+
+export default function Post({ post,setCurrentId }) {
   return (
     <Card sx={styles.card}>
       <CardMedia sx={styles.media} component="img" image={post.selectedFile} title={post.title} />
@@ -13,7 +14,10 @@ export default function Post({ post }) {
         <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div style={styles.overlay2}>
-        <Button style={{ color: "black" }} size="small" onClick={() => {}}>
+        <Button 
+          style={{ color: "black" }} 
+          size="small" 
+          onClick={() => setCurrentId(post._id)}>
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
@@ -22,9 +26,12 @@ export default function Post({ post }) {
           {`#${post.tags}`}
         </Typography>
       </div>
-      <CardContent>
-        <Typography sx={styles.title} variant="h5" gutterBottom>
+      <Typography sx={styles.title} variant="h5" gutterBottom>
           {post.title}
+        </Typography>
+      <CardContent>
+        <Typography fontSize={20} variant="h5" gutterBottom>
+          {post.message}
         </Typography>
       </CardContent>
       <CardActions sx={styles.cardActions}>
