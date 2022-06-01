@@ -29,14 +29,14 @@ export default function Post({ post,setCurrentId }) {
       </div>
       <div style={styles.details}>
         <Typography variant="body2" color="textSecondary">
-          {`#${post.tags}`}
+          {post.tags.map((tag)=> `#${tag}`)}
         </Typography>
       </div>
       <Typography sx={styles.title} variant="h5" gutterBottom>
           {post.title}
         </Typography>
       <CardContent>
-        <Typography fontSize={20} variant="h5" gutterBottom>
+        <Typography color="textSecondary" variant="h5" gutterBottom>
           {post.message}
         </Typography>
       </CardContent>
@@ -46,7 +46,7 @@ export default function Post({ post,setCurrentId }) {
           color="primary" 
           onClick={()=>dispatch(likePost(post._id))}>
           <ThumbUpAltIcon fontSize="small"></ThumbUpAltIcon>
-          Like {post.likeCount}
+          &nbsp; Like &nbsp; {post.likeCount} 
         </Button>
         <Button 
             size="small" 
