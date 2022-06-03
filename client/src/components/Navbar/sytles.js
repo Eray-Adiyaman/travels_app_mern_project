@@ -1,4 +1,4 @@
- /* Inside Navbar now  */
+ 
 const styles = {
     appBar:{
         borderRadius: 15,
