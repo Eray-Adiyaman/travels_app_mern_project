@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <AppBar sx={styles.appBar} position="static" color="inherit">
-        <div>
+        <div style={styles.brandContainer}>
         <Typography component={Link} to="/" sx={styles.heading} variant="h2" align="center">Travels</Typography>
         <img style={styles.image} src={travels} alt="travels" height="60" />
         </div>
