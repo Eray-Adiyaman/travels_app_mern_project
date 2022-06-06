@@ -14,7 +14,7 @@ export default function Input({ name, handleChange, label, autoFocus,  type, han
                 label={label}
                 autoFocus={autoFocus}
                 type={type}
-                InputProps={name === "password" && {
+                InputProps={name === "password" ? /*this input field required truhty value and gave a console error for not being a boolean so i changed && to ? : turnery operators to get rid of the error message */ {
                     endAdornment: (
                         <InputAdornment position="end">
                             <IconButton onClick={handleShowPassword}>
@@ -22,7 +22,7 @@ export default function Input({ name, handleChange, label, autoFocus,  type, han
                             </IconButton>
                         </InputAdornment>
                     )
-                }}
+                } : null}
             />
         </Grid>
     )
