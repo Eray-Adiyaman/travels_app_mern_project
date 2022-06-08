@@ -3,14 +3,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import styles from "./styles.js";
 import Input from "./Input";
 import Icon from "./Icon";
-import { GoogleLogin } from "react-google-login";
+import GoogleOneTapLogin from 'react-google-one-tap-login';
 import { useState } from "react";
 
 export default function Auth() {
   const [showPassword,setShowPassword]=useState(false);
   const [isSignup,setIsSignup]= useState(false);
-
   const handleShowPassword =()=>setShowPassword(prev => !prev)
+  const [isGoogleSignIn,setIsGoogleSignIn]=useState(false);
+
 
   const handleSubmit =()=>{
 
@@ -24,12 +25,15 @@ export default function Auth() {
     handleShowPassword(false)
   }
 
-  const googleSuccess = async (res)=>{
-    console.log(res)
+  const googleSuccess = async (response)=>{
+    console.log(response)
   }
   const googleFailure =(error)=>{
     console.log(error)
     console.log("Google Sing In was unsuccesful. Try Again")
+  }
+  const googleSingIn =()=>{
+    setIsGoogleSignIn(prev => !prev)
   }
 
 
@@ -55,17 +59,20 @@ export default function Auth() {
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
           </Grid>
-          <GoogleLogin 
-            clientId="...apps.googleusercontent.com" //dotenv here
-            scope="email"
-            render={(renderProps) => (
-            <Button sx={styles.googleButton} color="primary"  fullWidth onClick={renderProps.onClick}  disabled={renderProps.disabled}  startIcon={<Icon />}  variant="contained" >
+          {isGoogleSignIn && <GoogleOneTapLogin
+            onError={(error)=>googleFailure(error)}
+            onSuccess={(response) => googleSuccess(response)} 
+            googleAccountConfigs={{client_id:"....apps.googleusercontent.com"}} 
+          />}
+          <Button 
+            sx={styles.googleButton}
+            onClick={()=>{googleSingIn()}} 
+            color="primary"  
+            fullWidth startIcon={<Icon />}  
+            variant="contained" 
+          >
                Google Sign In
-            </Button>)}
-            onSuccess={googleSuccess}
-            onFailure={googleFailure}
-            cookiePolicy="single_host_origin"
-          />
+          </Button>
           <Button sx={styles.submit} type="submit" fullWidth variant="contained" color="primary">
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
