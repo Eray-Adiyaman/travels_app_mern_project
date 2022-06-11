@@ -5,12 +5,17 @@ import Input from "./Input";
 import Icon from "./Icon";
 import GoogleOneTapLogin from 'react-google-one-tap-login';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
   const [showPassword,setShowPassword]=useState(false);
   const [isSignup,setIsSignup]= useState(false);
-  const handleShowPassword =()=>setShowPassword(prev => !prev)
   const [isGoogleSignIn,setIsGoogleSignIn]=useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleShowPassword =()=>setShowPassword(prev => !prev)
 
 
   const handleSubmit =()=>{
@@ -27,6 +32,15 @@ export default function Auth() {
 
   const googleSuccess = async (response)=>{
     console.log(response)
+    const token = response
+
+    try {
+      dispatch({ type:"AUTH", data: { token }});
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+
   }
   const googleFailure =(error)=>{
     console.log(error)
@@ -34,6 +48,7 @@ export default function Auth() {
   }
   const googleSingIn =()=>{
     setIsGoogleSignIn(prev => !prev)
+    setTimeout(()=>setIsGoogleSignIn(false),5000)
   }
 
 
@@ -62,7 +77,7 @@ export default function Auth() {
           {isGoogleSignIn && <GoogleOneTapLogin
             onError={(error)=>googleFailure(error)}
             onSuccess={(response) => googleSuccess(response)} 
-            googleAccountConfigs={{client_id:"....apps.googleusercontent.com"}} 
+            googleAccountConfigs={{client_id:"...apps.googleusercontent.com"}} 
           />}
           <Button 
             sx={styles.googleButton}

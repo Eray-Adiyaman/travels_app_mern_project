@@ -24,7 +24,7 @@ const styles = {
       profile: {
         display: 'flex',
         justifyContent: 'space-between',
-        width: '400px',
+        width: '300px',
       },
       userName: {
         display: 'flex',
@@ -33,6 +33,7 @@ const styles = {
       brandContainer: {
         display: 'flex',
         alignItems: 'center',
+        width: "550px"
       },
       purple: {
         color: deepPurple[500],
