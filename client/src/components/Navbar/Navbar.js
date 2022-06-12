@@ -18,7 +18,7 @@ export default function Navbar() {
         setUser(null);
     }
 
-    console.log(user)
+    // console.log(user)
     useEffect(() => {
     //   const token = user?.token;
       
