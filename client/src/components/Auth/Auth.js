@@ -7,22 +7,34 @@ import GoogleOneTapLogin from 'react-google-one-tap-login';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signin,signup} from "../../redux/actions/auth";
+
+const initialState= { firstName:"",lastName:"",email:"",password:"",confirmPassword:""}
 
 export default function Auth() {
   const [showPassword,setShowPassword]=useState(false);
   const [isSignup,setIsSignup]= useState(false);
   const [isGoogleSignIn,setIsGoogleSignIn]=useState(false);
+  const [formData,setFormData]=useState(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleShowPassword =()=>setShowPassword(prev => !prev)
 
 
-  const handleSubmit =()=>{
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    if(isSignup){
+      dispatch(signup(formData,navigate))
+    }else{
+      dispatch(signin(formData,navigate))
 
+    }
   }
 
-  const handleChange =()=>{
+  const handleChange =(e)=>{
+
+    setFormData({...formData,[e.target.name]: e.target.value})
 
   }
   const switchMode =()=>{
@@ -65,7 +77,7 @@ export default function Auth() {
               isSignup && (
                 <>
                   <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                  <Input name="firstName" label="First Name" handleChange={handleChange}  half />
+                  <Input name="lastName" label="Last Name" handleChange={handleChange}  half />
 
                 </>
               )
