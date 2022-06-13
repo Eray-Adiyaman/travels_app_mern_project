@@ -5,6 +5,7 @@ import travels from "../../images/travels.png";
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import decode from "jwt-decode";
 
 export default function Navbar() {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -14,19 +15,23 @@ export default function Navbar() {
     
     const logout =()=>{
         dispatch({ type:"LOGOUT" })
-        navigate("/")
+        navigate("/auth")
         setUser(null);
     }
 
     // console.log(user)
     useEffect(() => {
-    //   const token = user?.token;
+      const token = user?.token;
       
-      //JWT ?? looks like it doesnt required at the moment because google sign in returns decoded JWT
-      // Handle it later
-      
+      //LOG OUT THE USER IF JWT 1H TIME EXPIRED
+      if(token){
+        const decodedToken = decode(token)
+        if(decodedToken.exp * 1000 < new Date().getTime){
+          logout();
+        } 
+      }
       setUser(JSON.parse(localStorage.getItem("profile")))
-
+      
     }, [location])
     
 
