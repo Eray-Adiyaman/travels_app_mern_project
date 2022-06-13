@@ -9,6 +9,7 @@ export default function Input({ name, handleChange, label, autoFocus,  type, han
                 name={name}
                 onChange={handleChange}
                 variant="outlined"
+                autoComplete="on" //without this console was showing an error saying "Input elements should have autocomplete attributes (suggested: "current-password")"
                 required
                 fullWidth
                 label={label}

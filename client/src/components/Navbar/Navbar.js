@@ -38,8 +38,8 @@ export default function Navbar() {
         </div>
         <Toolbar sx={styles.toolbar} >
             {user ? (<div style={styles.profile}>
-                <Avatar sx={styles.purple} alt={user.token.name} src={user.token.picture}>{user.token.name.charAt(0)}</Avatar>
-                <Typography sx={styles.userName} variant="h6">{user.token.name}</Typography>
+                <Avatar sx={styles.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
+                <Typography sx={styles.userName} variant="h6">{user.result.name}</Typography>
                 <Button sx={styles.logout} color="secondary" variant="contained" onClick={()=>{logout()}} >Logout</Button>
             </div>) : (
                 <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>

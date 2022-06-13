@@ -9,6 +9,7 @@ import { deletePost ,likePost} from "../../../redux/actions/posts.js";
 
 export default function Post({ post,setCurrentId }) {
   
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
 
 
@@ -16,7 +17,7 @@ export default function Post({ post,setCurrentId }) {
     <Card sx={styles.card}>
       <CardMedia sx={styles.media} component="img" image={post.selectedFile} title={post.title} />
       <div style={styles.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>
+        <Typography variant="h6">{post.name}</Typography>
         <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div style={styles.overlay2}>
@@ -41,12 +42,13 @@ export default function Post({ post,setCurrentId }) {
         </Typography>
       </CardContent>
       <CardActions sx={styles.cardActions}>
-        <Button 
+        <Button
+          disabled={!user?.result} 
           size="small" 
           color="primary" 
           onClick={()=>dispatch(likePost(post._id))}>
           <ThumbUpAltIcon fontSize="small"></ThumbUpAltIcon>
-          &nbsp; Like &nbsp; {post.likeCount} 
+          &nbsp; Like &nbsp; {post.likes.length} 
         </Button>
         <Button 
             size="small" 

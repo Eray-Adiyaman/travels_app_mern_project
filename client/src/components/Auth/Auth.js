@@ -39,7 +39,7 @@ export default function Auth() {
   }
   const switchMode =()=>{
     setIsSignup(prev => !prev);
-    handleShowPassword(false)
+    setShowPassword(false)
   }
 
   // const googleSuccess = async (response)=>{
