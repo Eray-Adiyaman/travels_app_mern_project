@@ -3,6 +3,7 @@ const styles ={
   media: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    height: "280px",
   },
   border: {
     border: 'solid',

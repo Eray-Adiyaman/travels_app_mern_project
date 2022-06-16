@@ -9,6 +9,8 @@ const postsReducer =(posts = [], action) => {
       return posts.filter((post) => post._id !== action.payload )
     case actionTypes.FETCH_ALL:
       return action.payload;
+    case actionTypes.FETCH_BY_SEARCH:
+      return action.payload;  
     case actionTypes.CREATE:
       return [...posts,action.payload];
     default:
