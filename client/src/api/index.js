@@ -10,7 +10,7 @@ API.interceptors.request.use((req)=>{
     return req;
 });
 
-export const fecthPosts = ()=> API.get("/posts")
+export const fecthPosts = (page)=> API.get(`/posts?page=${page}`)
 export const createPost = (newPost) => API.post("/posts",newPost)
 export const updatePost = (id,updatedPost) => API.patch(`/posts/${id}`,updatedPost)
 export const deletePost =(id) => API.delete(`/posts/${id}`);

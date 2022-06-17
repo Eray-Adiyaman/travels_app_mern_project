@@ -1,9 +1,10 @@
 
 const styles ={
   media: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     backgroundBlendMode: 'darken',
-    height: "280px",
+    paddingTop: '56.25%',
+    height: 30,
   },
   border: {
     border: 'solid',
@@ -46,6 +47,10 @@ const styles ={
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  cardContent: {
+    
+
   }
 }
 

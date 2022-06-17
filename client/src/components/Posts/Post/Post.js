@@ -14,11 +14,11 @@ export default function Post({ post,setCurrentId }) {
 
 
   return (
-    <Card sx={styles.card}>
-      <CardMedia sx={styles.media} component="img" image={post.selectedFile} title={post.title} />
+    <Card sx={styles.card} raised elevation={6}>
+      <CardMedia sx={styles.media} image={post.selectedFile} title={post.title} />
       <div style={styles.overlay}>
-        <Typography variant="h6">{post.name}</Typography>
-        <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+        <Typography color="beige" variant="h6">{post.name}</Typography>
+        <Typography color="beige" variant="body2">{moment(post.createdAt).fromNow()}</Typography>
       </div>
       {(user?.result?._id === post?.creator) && 
         <div style={styles.overlay2}>
@@ -38,9 +38,9 @@ export default function Post({ post,setCurrentId }) {
       <Typography sx={styles.title} variant="h5" gutterBottom>
           {post.title}
         </Typography>
-      <CardContent>
-        <Typography color="textSecondary" variant="h5" gutterBottom>
-          {post.message}
+      <CardContent sx={styles.cardContent}>
+        <Typography variant="body2" color="textSecondary" component="p">
+        {post.message.split(' ').splice(0, 4).join(' ')}...
         </Typography>
       </CardContent>
       <CardActions sx={styles.cardActions}>

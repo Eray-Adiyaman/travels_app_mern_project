@@ -23,10 +23,6 @@ export default function Home() {
   const [tags,setTags]=useState([]);
 
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
-  
   
   const searchPost =()=>{
     if(search.trim().length !== 0 || tags.length !== 0 ){
@@ -93,7 +89,7 @@ export default function Home() {
           </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <Paper elevation={6}>
-              <Pagination />
+              <Pagination page={page} />
             </Paper>
           </Grid>
         </Grid>

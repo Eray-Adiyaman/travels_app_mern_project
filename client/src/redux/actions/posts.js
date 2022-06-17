@@ -1,9 +1,9 @@
 import * as actionTypes from "../actions/actionTypes"
 import * as api from "../../api"
 
-export const getPosts =() => async (dispatch) => {
+export const getPosts =(page) => async (dispatch) => {
     try {
-        const {data} = await api.fecthPosts();
+        const {data} = await api.fecthPosts(page);
         dispatch({type:actionTypes.FETCH_ALL,payload: data});
     } catch (error) {
         console.log(error.message)   
