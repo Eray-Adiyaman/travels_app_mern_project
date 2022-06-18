@@ -5,7 +5,7 @@ export const getPosts = async (req,res) =>{
     const { page } = req.query
 
     try {
-        const LIMIT =4;
+        const LIMIT =8;
         const startIndex= (Number(page)-1)*LIMIT; //even tho i pass page as a number when it get passed into backend its a string,so i have to turn it into a number again
         const total = await PostMessage.countDocuments({});
 

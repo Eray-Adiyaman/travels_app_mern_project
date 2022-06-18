@@ -9,16 +9,17 @@ const Paginate = ({ page }) => {
     const { numberOfPages } = useSelector((state)=> state.posts)
     const dispatch = useDispatch();
 
-
    useEffect(()=>{
     if(page) dispatch(getPosts(page))
 
    },[page])
-    
+
+   
 
     return(
         <Pagination 
             sx={styles.ul}
+            
             count={numberOfPages}
             page={Number(page)|| 1}
             variant="outlined"

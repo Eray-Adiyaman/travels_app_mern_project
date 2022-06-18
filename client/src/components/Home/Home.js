@@ -1,7 +1,7 @@
 import {Container,Grow,Grid,Paper,AppBar,TextField,Button,Chip,Autocomplete} from "@mui/material";
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { getPosts, getPostsBySearch } from "../../redux/actions/posts";
+import { useState, } from "react";
+import {  getPostsBySearch } from "../../redux/actions/posts";
 import { useNavigate, useLocation } from "react-router-dom";
 import Pagination from "../pagination/pagination";
 import Posts from "../Posts/Posts";
@@ -88,9 +88,11 @@ export default function Home() {
           <Button sx={styles.searchButton} color="primary" variant="contained" onClick={searchPost}>Search</Button>   
           </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper elevation={6}>
-              <Pagination page={page} />
+            {(!searchQuery && !tags.length) && (
+            <Paper sx={styles.pagination} elevation={6}>
+              <Pagination  page={page} />
             </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>

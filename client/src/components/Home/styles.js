@@ -23,6 +23,11 @@ const styles = {
     searchButton:{
         marginTop: "5px",
         padding: "10px",
+    },
+    pagination: {
+        borderRadius: 4,
+        marginTop:"10px",
+        padding: "16px",
     }
 }
 

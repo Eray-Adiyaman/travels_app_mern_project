@@ -4,10 +4,13 @@ import {Grid,CircularProgress } from "@mui/material";
 import styles from "./styles.js"
 
 export default function Posts({setCurrentId}) {
-  const {posts} = useSelector((state)=> state.posts)
+  const {posts,isLoading} = useSelector((state)=> state.posts)
   // console.log(posts)
+
+  if(!posts.length && !isLoading) return "No Posts";
+
   return (
-      !posts?.length ? <CircularProgress /> : (
+      isLoading ? <CircularProgress /> : (
       
         <Grid sx={styles.mainContainer} container alignItems="stretch" spacing={3}>
             {posts.map((post)=> (
